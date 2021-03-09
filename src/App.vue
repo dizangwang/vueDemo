@@ -1,19 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Hello App!</h1>
+    <p>
+      <!-- 使用 router-link 组件来导航. -->
+      <!-- 通过传入 `to` 属性指定链接. -->
+      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+      <router-link to="/foo">跳转到Foo</router-link>
+      <br />
+      <router-link to="/bar">跳转到Bar</router-link>
+      <br />
+      <router-link to="/echarts">跳转到图表</router-link>
+      <br />
+      <router-link to="/map">跳转到地图</router-link>
+      <br />
+      <router-link to="/project">跳转到增删改查</router-link>
+    </p>
+    <br />
+    <br />
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  created() {
+    this.ajax
+      .get("/s?wd=孙悟空")
+      .then(function (response) {
+        console.log("---请求数据---", response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log("---请求异常---", error);
+      });
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style>
